@@ -10,7 +10,7 @@ export const query = groq`(*[_type=='post']{
   categories[]->
 } | order(_createdAt desc))`;
 
-export default function Documents({ data }) {
+export default function Documents({ data }: any) {
   console.log(data[0].mainImage);
   return (
     <div className="pb-20">
@@ -18,7 +18,7 @@ export default function Documents({ data }) {
       <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-100 w-[85%] m-auto" />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center mt-16 ">
-        {data.map((post) => (
+        {data.map((post: any) => (
           <ClientSideRoute key={post._id} route={`/post/${post.slug.current}`}>
             <div className="p-6 m-auto">
               <div className="relative w-80 h-80 drop-shadow-xl hover:scale-105 transition-transform duration-200 ease-out ">

@@ -3,7 +3,7 @@ import { PortableTextReactComponents } from "@portabletext/react";
 import Image from "next/image";
 import Link from "next/link";
 
-export const RichTextMdn: Partial<PortableTextReactComponents> = {
+export const RichTextMdn: any = {
   types: {
     image: ({ value }: any) => {
       return (
@@ -57,22 +57,22 @@ export const RichTextMdn: Partial<PortableTextReactComponents> = {
         {children}
       </blockquote>
     ),
-    marks: {
-      link: ({ children, value }: any) => {
-        const rel = !value.href.startsWith("/")
-          ? "noreferrer noopener"
-          : undefined;
+  },
+  marks: {
+    link: ({ children, value }: any) => {
+      const rel = !value.href.startsWith("/")
+        ? "noreferrer noopener"
+        : undefined;
 
-        return (
-          <Link
-            href={value.href}
-            rel={rel}
-            className="underline decoration-[#EFF0D1] hover:decoration-black"
-          >
-            {children}
-          </Link>
-        );
-      },
+      return (
+        <Link
+          href={value.href}
+          rel={rel}
+          className="underline decoration-[#EFF0D1] hover:decoration-red-400"
+        >
+          {children}
+        </Link>
+      );
     },
   },
 };

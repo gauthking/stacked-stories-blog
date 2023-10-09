@@ -12,6 +12,21 @@ type Props = {
   };
 };
 
+export const revalidate = 15;
+
+export async function generateStaticParams() {
+  const query = groq`*[_type=='post']
+  {
+    slug
+  }`;
+  const slugs: any[] = await client.fetch(query);
+  const slugRoutes = slugs.map((slug: any) => slug.slug.current);
+
+  return slugRoutes.map((slug) => ({
+    slug,
+  }));
+}
+
 async function Blog({ params: { slug } }: Props) {
   console.log(slug);
   const query = groq`(*[_type=='post' && slug.current==$slug][0]
@@ -20,7 +35,7 @@ async function Blog({ params: { slug } }: Props) {
     author->,
     categories[]->
   })`;
-  const post = await client.fetch(query, { slug }, { cache: "no-cache" });
+  const post = await client.fetch(query, { slug });
   return (
     <article className="px-10 pb-24">
       <section className="space-y-2 text-[#EFF0D1] border border-[#eff0d17b] ">

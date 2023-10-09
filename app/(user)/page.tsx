@@ -2,9 +2,8 @@ import { draftMode } from "next/headers";
 import { LiveQuery } from "next-sanity/preview/live-query";
 import BlogDocument, { query } from "../../components/BlogDocument";
 import PreviewBlogDocuments from "../../components/PreviewBlogDocuments";
-import { sanityFetch } from "../../utils/sanity.fetch";
-import { cache } from "react";
 import { client } from "@/utils/sanity.client";
+export const revalidate = 15;
 
 export default async function IndexPage() {
   draftMode().disable();
