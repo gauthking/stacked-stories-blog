@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import { defineField, defineType } from 'sanity'
 
 export default defineType({
   name: 'author',
@@ -8,6 +8,21 @@ export default defineType({
     defineField({
       name: 'name',
       title: 'Name',
+      type: 'string',
+    }),
+    defineField({
+      name: 'medium',
+      title: 'Medium',
+      type: 'string',
+    }),
+    defineField({
+      name: 'twitter',
+      title: 'Twitter/X',
+      type: 'string',
+    }),
+    defineField({
+      name: 'instagram',
+      title: 'Instagram',
       type: 'string',
     }),
     defineField({
@@ -35,7 +50,7 @@ export default defineType({
         {
           title: 'Block',
           type: 'block',
-          styles: [{title: 'Normal', value: 'normal'}],
+          styles: [{ title: 'Normal', value: 'normal' }],
           lists: [],
         },
       ],

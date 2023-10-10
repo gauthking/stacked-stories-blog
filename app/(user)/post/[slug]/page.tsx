@@ -1,10 +1,13 @@
 import { client } from "@/utils/sanity.client";
 import { groq } from "next-sanity";
-import React, { cache } from "react";
+import React from "react";
 import Image from "next/image";
 import urlFor from "@/utils/urlFor";
 import { PortableText } from "@portabletext/react";
 import { RichTextMdn } from "@/components/RichTextMdn";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+import { IconButton } from "@mui/material";
+import Link from "next/link";
 
 type Props = {
   params: {
@@ -36,6 +39,10 @@ async function Blog({ params: { slug } }: Props) {
     categories[]->
   })`;
   const post = await client.fetch(query, { slug });
+  // const id = post.author._id;
+  // const authorQuery = groq`(*[_type=='author' && _id==$id][0])`;
+  // const author = await client.fetch(authorQuery, { id });
+  // console.log(author);
   return (
     <article className="px-10 pb-24">
       <section className="space-y-2 text-[#EFF0D1] border border-[#eff0d17b] ">
@@ -67,8 +74,15 @@ async function Blog({ params: { slug } }: Props) {
                   src={urlFor(post.author.image).url()}
                   alt={`${post._id} image`}
                 />
-                <div className="w-64">
-                  <h3 className="font-bold">{post.author.name}</h3>
+                <div className="w-fit">
+                  <h3 className="font-titilium_semibold">{post.author.name}</h3>
+                </div>
+                <div className="cursor-pointer">
+                  <Link href={`/author/${post.author._id}`}>
+                    <IconButton>
+                      <ArrowOutwardIcon color="inherit" />
+                    </IconButton>
+                  </Link>
                 </div>
               </div>
             </div>
