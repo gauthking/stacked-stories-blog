@@ -12,6 +12,7 @@ type Props = {
     id: string;
   };
 };
+export const revalidate = 15;
 
 async function Author({ params: { id } }: Props) {
   const authorQuery = groq`(*[_type=='author' && _id==$id][0])`;
