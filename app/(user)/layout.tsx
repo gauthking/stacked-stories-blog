@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import { draftMode } from "next/headers";
 
 import { token } from "../../utils/sanity.fetch";
+import Footer from "@/components/Footer";
 const PreviewProvider = dynamic(
   () => import("../../components/PreviewProvider")
 );
@@ -53,15 +54,18 @@ export default function RootLayout({
         <Hero />
         {children}
       </body> */}
-      <body className="max-w-7xl mx-auto bg-[#262730] min-h-screen">
-        <Navbar />
-        {draftMode().isEnabled ? (
-          <PreviewProvider token={token}>
-            preview mode - {children}
-          </PreviewProvider>
-        ) : (
-          children
-        )}
+      <body className="bg-[#262730]">
+        <main className="max-w-7xl mx-auto  min-h-screen">
+          <Navbar />
+          {draftMode().isEnabled ? (
+            <PreviewProvider token={token}>
+              preview mode - {children}
+            </PreviewProvider>
+          ) : (
+            children
+          )}
+        </main>
+        <Footer />
       </body>
     </html>
   );

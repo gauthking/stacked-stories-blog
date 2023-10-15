@@ -7,11 +7,13 @@ import medium from "../../../../assets/images/medium.png";
 import Image from "next/image";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import Link from "next/link";
+
 type Props = {
   params: {
     id: string;
   };
 };
+
 export const revalidate = 15;
 
 async function Author({ params: { id } }: Props) {

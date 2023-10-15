@@ -12,11 +12,12 @@ export const query = groq`(*[_type=='post']{
 
 export default function Documents({ data }: any) {
   console.log(data[0].categories);
+
   return (
     <div className="pb-20">
       <Hero />
       <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-100 w-[85%] m-auto" />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center mt-12 ">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center my-12 ">
         {data.map((post: any) => (
           <ClientSideRoute key={post._id} route={`/post/${post.slug.current}`}>
             <div className="p-6 m-auto">
@@ -28,7 +29,7 @@ export default function Documents({ data }: any) {
                   fill
                 />
                 <div className="absolute bottom-0 w-full backdrop-blur-lg opacity-75 bg-[#499b72] hover:bg-[#D33F49] rounded drop-shadow-lg text-white p-5 flex justify-between cursor-pointer hover:text-black">
-                  <div>
+                  <div className="flex flex-col w-full justify-between">
                     <p className="font-bold">{post.title}</p>
                     <p>
                       {new Date(post._createdAt).toLocaleDateString("en-US", {
@@ -37,16 +38,22 @@ export default function Documents({ data }: any) {
                         year: "numeric",
                       })}
                     </p>
-                    <div className="category flex justify-between flex-wrap mt-1">
+                    <div className="category w-full flex justify-between flex-wrap mt-1">
                       <div className="grid grid-cols-2 place-items-center gap-1">
-                        {post.categories.map((cat: any, index: any) => (
-                          <div
-                            key={index}
-                            className="p-1 rounded-xl text-xs w-fit bg-[#45785f]"
-                          >
-                            {cat.title}
+                        {post.categories ? (
+                          post.categories.map((cat: any, index: any) => (
+                            <div
+                              key={index}
+                              className="p-1 rounded-xl text-xs w-fit bg-[#45785f]"
+                            >
+                              {cat.title}
+                            </div>
+                          ))
+                        ) : (
+                          <div className="p-1 rounded-xl text-xs w-fit bg-[#45785f]">
+                            No Category
                           </div>
-                        ))}
+                        )}
                       </div>
                       <img
                         title={`${post.author.name} - Open blog to see more about the author`}
