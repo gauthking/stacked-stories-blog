@@ -7,7 +7,7 @@ import medium from "../../../../assets/images/medium.png";
 import Image from "next/image";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import Link from "next/link";
-
+import Avatar from "@mui/material/Avatar";
 type Props = {
   params: {
     id: string;
@@ -27,13 +27,25 @@ async function Author({ params: { id } }: Props) {
       </h1>
       <hr className="h-px my-4 bg-neutral-400 border-0 drop-shadow-xl dark:bg-neutral-400 w-full m-auto" />
       <div className="flex items-center md:items-start md:justify-evenly flex-col lg:flex-row">
-        <div className="mt-4">
-          <img
-            className="rounded-[200%] w-48 h-48 md:w-96 md:h-96 object-cover  hover:shadow-md
-                  transition-all ease-in-out md:mx-2 border-4 border-[#eff0d14e] drop-shadow-2xl"
+        <div className="mt-4 md:mx-4">
+          <Avatar
+            src={urlFor(author.image).url()}
+            sx={{
+              width: "312px",
+              height: "312px",
+              "@media (max-width: 600px)": {
+                width: "180px",
+                height: "180px",
+              },
+            }}
+          />
+
+          {/* <img
+            className="rounded-full w-48 h-48 md:w-64 md:h-64 object-cover hover:shadow-md
+                  transition-all ease-in-out md:mx-2 drop-shadow-2xl"
             src={urlFor(author.image).url()}
             alt={`${author._id} image`}
-          />
+          /> */}
         </div>
         <div className="authorinfo md:mr-24 text-center md:text-left flex flex-col justify-between gap-10 h-full">
           <div>
