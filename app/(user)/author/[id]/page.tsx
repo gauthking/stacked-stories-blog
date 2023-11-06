@@ -52,9 +52,9 @@ async function Author({ params: { id } }: Props) {
             <h1 className="text-2xl md:text-5xl font-titilium_bold text-[#EFF0D1] mt-8 md:ml-2">
               {author.name}
             </h1>
-            {author.bio[0]&&<h1 className="mt-2 ml-2 text-xs md:text-lg font-titilium_semibold text-[#eff0d1a9]">
+            {author.bio[0].children[0].text !==""? <h1 className="mt-2 ml-2 text-xs md:text-lg font-titilium_semibold text-[#eff0d1a9]">
               "{author.bio[0].children[0].text}"
-            </h1>}
+            </h1>:""}
             
           </div>
           <div className="socials flex items-center justify-center md:justify-normal gap-3 md:mx-6">
