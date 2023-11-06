@@ -57,8 +57,8 @@ async function Author({ params: { id } }: Props) {
             </h1>
           </div>
           <div className="socials flex items-center justify-center md:justify-normal gap-3 md:mx-6">
-            {author.instagram !=="" ? (
-              <Link href={author.instagram}>
+            {author.instagram? (
+              <Link href={author?.instagram}>
                 <InstagramIcon
                   className="cursor-pointer"
                   fontSize="medium"
@@ -68,8 +68,8 @@ async function Author({ params: { id } }: Props) {
             ) : (
               ""
             )}
-            {author.twitter !=="" ? (
-              <Link href={author.twitter}>
+            {author.twitter ? (
+              <Link href={author?.twitter}>
                 <TwitterIcon
                   className="cursor-pointer"
                   fontSize="medium"
@@ -79,8 +79,8 @@ async function Author({ params: { id } }: Props) {
             ) : (
               ""
             )}
-            {author.medium !=="" ? (
-              <Link href={author.medium}>
+            {author.medium ? (
+              <Link href={author?.medium}>
                 <Image
                   src={medium}
                   width={26}
@@ -92,8 +92,8 @@ async function Author({ params: { id } }: Props) {
             ) : (
               ""
             )}
-            {author.github !=="" ? (
-              <Link href={author.github}>
+            {author.github  ? (
+              <Link href={author?.github}>
                 <GitHubIcon className="cursor-pointer" fontSize="medium" />
               </Link>
             ) : (
